@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const player_1 = 'X';
-const player_2 = 'O';
+const playerOne = 'x';
+const playerTwo= 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -29,11 +29,37 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-
   // Wave 2
   // You will need to create a method to change the square
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+
+  const [turn, setTurn] = useState(1);
+
+  const currentPlayer = (turn) => {
+    if (turn <= 9) {
+      if (turn % 2 !== 0) {
+        return playerOne;
+      } else {
+        return playerTwo;
+      }
+    }
+  };
+
+
+  const onClickCallback = (id) => {
+    const updateSquare = squares.map((square) => {
+      for (let subSquare of square) {
+        if (subSquare.id === id) {
+          subSquare.value = currentPlayer(turn);
+          console.log('turn:' + turn);
+          setTurn(turn + 1);
+        }
+      }
+      return square;
+    });
+    setSquares(updateSquare);
+  };
 
   const checkForWinner = () => {
     let i = 0;
@@ -88,7 +114,8 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares}
+        onClickCallback={onClickCallback} />
       </main>
     </div>
   );
