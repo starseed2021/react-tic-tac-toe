@@ -113,15 +113,15 @@ const App = () => {
   // FUNCTION TO DISPLAY THE WINNING PLAYER
   // THIS IS A WORKING FUNCTION BUT DOESN'T PASS TESTS
   // WILL IMPLEMENT AFTER GRADING
-  const getPlayer = (letter) => {
-    if (letter === 'x') {
-      return 'Player One!';
-    } else if (letter === 'o') {
-      return 'Player Two!';
-    } else {
-      return null;
-    }
-  };
+  // const getPlayer = (letter) => {
+  //   if (letter === 'x') {
+  //     return 'Player One!';
+  //   } else if (letter === 'o') {
+  //     return 'Player Two!';
+  //   } else {
+  //     return null;
+  //   }
+  // };
   
   return (
     <div className='App'>
